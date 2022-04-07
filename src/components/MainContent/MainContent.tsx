@@ -7,10 +7,16 @@ const MainContentWrapper = styled.div`
   flex: 1 1 auto;
 `;
 
-const MainContent: React.FC<{}> = () => {
+interface IMainContentProps {
+  data: {
+    locations: Array<any>;
+  } | null;
+}
+
+const MainContent: React.FC<IMainContentProps> = ({ data }) => {
   return (
     <MainContentWrapper>
-      <Map />
+      <Map data={data} />
     </MainContentWrapper>
   );
 };

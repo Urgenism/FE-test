@@ -1,3 +1,4 @@
+import { useFetchLocation } from "hooks/useFetchLocations";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
@@ -64,12 +65,14 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
+  const { data } = useFetchLocation();
+
   return (
     <AppWrapper>
       <GlobalStyle />
       <Sidenav />
-      <SideContent />
-      <MainContent />
+      <SideContent data={data} />
+      <MainContent data={data} />
     </AppWrapper>
   );
 }

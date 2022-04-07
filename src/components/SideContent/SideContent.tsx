@@ -61,28 +61,36 @@ const LocationInfoInput = styled.input`
   margin-left: 5px;
 `;
 
-const SideContent = () => {
+interface ISideContentProps {
+  data: {
+    locations: Array<any>;
+  } | null;
+}
+
+const SideContent: React.FC<ISideContentProps> = ({ data }) => {
   return (
     <SideContentWrapper>
       <LocationInfoList>
-        {Array.from(new Array(3)).map((item, index) => (
-          <LocationInfoItem key={index}>
-            <LocationHeader>
-              <IconFlag />
-              <LocationTitle>Location {index + 1}</LocationTitle>
-            </LocationHeader>
-            <LocationBody>
-              <LocationInfo>
-                <LocationInfoLabel>Lat</LocationInfoLabel>
-                <LocationInfoInput readOnly value={37.56755685} />
-              </LocationInfo>
-              <LocationInfo>
-                <LocationInfoLabel>Long</LocationInfoLabel>
-                <LocationInfoInput readOnly value={126.97328373} />
-              </LocationInfo>
-            </LocationBody>
-          </LocationInfoItem>
-        ))}
+        {Array.isArray(data?.locations) && data?.locations.length
+          ? data.locations.map((item, index) => (
+              <LocationInfoItem key={index}>
+                <LocationHeader>
+                  <IconFlag />
+                  <LocationTitle>Location {index + 1}</LocationTitle>
+                </LocationHeader>
+                <LocationBody>
+                  <LocationInfo>
+                    <LocationInfoLabel>Lat</LocationInfoLabel>
+                    <LocationInfoInput readOnly value={item[0]} />
+                  </LocationInfo>
+                  <LocationInfo>
+                    <LocationInfoLabel>Long</LocationInfoLabel>
+                    <LocationInfoInput readOnly value={item[1]} />
+                  </LocationInfo>
+                </LocationBody>
+              </LocationInfoItem>
+            ))
+          : null}
       </LocationInfoList>
     </SideContentWrapper>
   );
