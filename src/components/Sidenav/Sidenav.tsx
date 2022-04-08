@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import { IconMap, IconComb, IconTerrain } from "assets/icons";
+import { IconNav1, IconNav2, IconNav3 } from "assets/icons";
+import routePaths from "global/routePaths";
+
+import NavLink from "./NavLink";
 
 const SidenavWrapper = styled.div`
   flex: 0 0 60px;
@@ -16,37 +19,9 @@ const SidenavList = styled.ul`
   list-style: none;
 `;
 
-interface ISidenavItemProps {
-  active?: boolean;
-}
-
 const SidenavItem = styled.li`
-  height: 44px;
-  width: 44px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: ${(props: ISidenavItemProps) =>
-    props.active ? "#1F4782" : "transparent"};
-
   &:not(:last-child) {
     margin-bottom: 10px;
-  }
-
-  &:hover {
-    background: #1f4782;
-  }
-
-  > svg path {
-    fill: ${(props: ISidenavItemProps) => (props.active ? "#fff" : "#c7c7c7")};
-    transition: all 0.2s;
-  }
-
-  &:hover svg path {
-    fill: #fff;
   }
 `;
 
@@ -54,14 +29,20 @@ const Sidenav: React.FC<{}> = () => {
   return (
     <SidenavWrapper>
       <SidenavList>
-        <SidenavItem active>
-          <IconMap />
+        <SidenavItem>
+          <NavLink to={routePaths.home}>
+            <IconNav1 />
+          </NavLink>
         </SidenavItem>
         <SidenavItem>
-          <IconComb />
+          <NavLink to={routePaths.route2}>
+            <IconNav2 />
+          </NavLink>
         </SidenavItem>
         <SidenavItem>
-          <IconTerrain />
+          <NavLink to={routePaths.route3}>
+            <IconNav3 />
+          </NavLink>
         </SidenavItem>
       </SidenavList>
     </SidenavWrapper>

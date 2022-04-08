@@ -1,4 +1,4 @@
-import config from "config";
+import config from "global/config";
 import { useEffect, useState } from "react";
 
 export const useFetchLocation = () => {

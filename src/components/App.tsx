@@ -1,10 +1,12 @@
-import { useFetchLocation } from "hooks/useFetchLocations";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import { Routes, Route } from "react-router-dom";
 
-import MainContent from "./MainContent";
-import SideContent from "./SideContent";
 import Sidenav from "./Sidenav";
+import Route1 from "./Route1";
+import Route2 from "./Route2";
+import Route3 from "./Route3";
+import routePaths from "global/routePaths";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -64,17 +66,24 @@ const AppWrapper = styled.div`
   width: 100%;
 `;
 
-function App() {
-  const { data } = useFetchLocation();
+const MainContent = styled.div`
+  flex: 1 1 auto;
+`;
 
+const App: React.FC<{}> = () => {
   return (
     <AppWrapper>
       <GlobalStyle />
       <Sidenav />
-      <SideContent data={data} />
-      <MainContent data={data} />
+      <MainContent>
+        <Routes>
+          <Route path={routePaths.home} element={<Route1 />} />
+          <Route path={routePaths.route2} element={<Route2 />} />
+          <Route path={routePaths.route3} element={<Route3 />} />
+        </Routes>
+      </MainContent>
     </AppWrapper>
   );
-}
+};
 
 export default App;

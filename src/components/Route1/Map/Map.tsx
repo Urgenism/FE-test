@@ -1,16 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as ol from "ol";
-import styled from "styled-components";
 import * as proj from "ol/proj";
-import * as source from "ol/source";
 import * as geom from "ol/geom";
 import { Tile, Vector } from "ol/layer";
-import { Style, Fill, Stroke, Circle } from "ol/style";
+import * as source from "ol/source";
+import { Style, Stroke, Circle } from "ol/style";
+import styled from "styled-components";
+
+const MapWrapper = styled.div`
+  flex: 1 1 auto;
+`;
 
 const MapElement = styled.div`
   width: 100%;
   height: 100%;
-  flex: 0 0 auto;
 `;
 
 interface IMapProps {
@@ -38,6 +41,7 @@ const Map: React.FC<IMapProps> = ({ data }) => {
       controls: [],
       overlays: [],
     };
+
     let mapObject = new ol.Map(options);
 
     setMap(mapObject);
@@ -73,7 +77,11 @@ const Map: React.FC<IMapProps> = ({ data }) => {
     }
   }, [data, map]);
 
-  return <MapElement ref={mapRef}></MapElement>;
+  return (
+    <MapWrapper>
+      <MapElement ref={mapRef}></MapElement>
+    </MapWrapper>
+  );
 };
 
 export default Map;
