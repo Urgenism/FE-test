@@ -31,11 +31,8 @@ const LocationHeader = styled.div`
 
 const LocationTitle = styled.h4`
   font-size: 15px;
-  color: #4d4c4c;
   margin-left: 10px;
 `;
-
-const LocationBody = styled.div``;
 
 const LocationInfo = styled.div`
   margin-bottom: 3px;
@@ -54,6 +51,7 @@ const LocationInfoInput = styled.input`
   border-radius: 5px;
   width: 147px;
   flex: 0 0 147px;
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 500;
   padding: 6px 8px;
@@ -78,7 +76,7 @@ const SideContent: React.FC<ISideContentProps> = ({ data }) => {
                   <IconFlag />
                   <LocationTitle>Location {index + 1}</LocationTitle>
                 </LocationHeader>
-                <LocationBody>
+                <div>
                   <LocationInfo>
                     <LocationInfoLabel>Lat</LocationInfoLabel>
                     <LocationInfoInput readOnly value={item[0]} />
@@ -87,7 +85,7 @@ const SideContent: React.FC<ISideContentProps> = ({ data }) => {
                     <LocationInfoLabel>Long</LocationInfoLabel>
                     <LocationInfoInput readOnly value={item[1]} />
                   </LocationInfo>
-                </LocationBody>
+                </div>
               </LocationInfoItem>
             ))
           : null}

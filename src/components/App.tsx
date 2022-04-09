@@ -2,11 +2,12 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Routes, Route } from "react-router-dom";
 
-import Sidenav from "./Sidenav";
+import routePaths from "global/routePaths";
+
 import Route1 from "./Route1";
 import Route2 from "./Route2";
 import Route3 from "./Route3";
-import routePaths from "global/routePaths";
+import Sidenav from "./Sidenav";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -39,6 +40,9 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  color: #4D4C4C;
 	line-height: 1;
   background: #fff;
 
